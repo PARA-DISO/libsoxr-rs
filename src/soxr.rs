@@ -277,16 +277,16 @@ impl Soxr {
             // assume interleaved
             return buf_in.as_ptr() as *const c_void;
         };
-        
+
         if io_spec.input_type().is_interleaved() {
             return buf_in.as_ptr() as *const c_void;
         }
-        
+
         let samples_in_buf = buf_in.len() / self.channels as usize;
         for channel in 0..self.channels as usize {
             split_buf.push(buf_in[channel * samples_in_buf..].as_ptr() as *const c_void);
         }
-        split_buf.as_ptr() as *const c_void        
+        split_buf.as_ptr() as *const c_void
     }
 
     fn get_buf_out_ptr<O>(&self, buf_out: &[O], split_buf: &mut Vec<*mut c_void>) -> *mut c_void {
@@ -294,16 +294,16 @@ impl Soxr {
             // assume interleaved
             return buf_out.as_ptr() as *mut c_void;
         };
-        
+
         if io_spec.input_type().is_interleaved() {
             return buf_out.as_ptr() as *mut c_void;
         }
-        
+
         let samples_in_buf = buf_out.len() / self.channels as usize;
         for channel in 0..self.channels as usize {
             split_buf.push(buf_out[channel * samples_in_buf..].as_ptr() as *mut c_void);
         }
-        split_buf.as_ptr() as *mut c_void        
+        split_buf.as_ptr() as *mut c_void
     }
 
     /// Sets the input function of type [SoxrFunction].

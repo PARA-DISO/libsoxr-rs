@@ -1,0 +1,3 @@
+[submodule "libsoxr-sys/soxr"]
+	path = libsoxr-sys/soxr
+	url = https://github.com/chirlu/soxr.git
